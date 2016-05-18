@@ -1,0 +1,28 @@
+<?php
+$output1=shell_exec ("linphonecsh init");
+sleep(2);
+echo "INIT done<br>";
+$output2=shell_exec ("linphonecsh register --host sip:sip.linphone.org --username sip:matpc --password 123123");
+sleep(2);
+echo "REGISTRATION done<br>";
+$a= shell_exec("linphonecsh status register");
+echo $a;
+echo "<br>";
+sleep(2);
+$output=shell_exec ("linphonecsh dial sip:mat99@sip.linphone.org");
+echo $output;
+?>
+
+
+/* Just few hints
+	<?php	
+	$output4=shell_exec ("sudo pkill linphonec");
+	echo $output4;
+	?>
+- Abilita il server apache ad eseguire pkill (ogni comando sudo) senza mettere la psw, così:
+- Scrivi sudo visudo (vai a modificare il file /etc/sudoers)
+- Scrivi: www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill
+	(se non funziona: www-data   ALL=NOPASSWD: ALL)
+il www data deriva da: ps aux | egrep '(apache|httpd)'.
+-Dopo aver lanciato il primo script, è necessario lanciare il secondo.
+*/
